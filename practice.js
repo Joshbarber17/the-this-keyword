@@ -33,13 +33,21 @@
     };
 
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
-user.getUserName();
+user.getUsername();
 
 //Next Problem
 
 
 // Write the function definitions which will make the following function invocations function properly.
-
+function Car(make, model, year) {
+  this.make= make;
+  this.model= model;
+  this.year= year;
+  this.move = null;
+  this.moveCar = function() {
+    return this.move = 10;
+  };
+}
   //Function Invocations Here
 
 var prius = new Car('Toyota', 'Prius', 2011);
@@ -48,7 +56,9 @@ var mustang = new Car('Ford', 'Mustang', 2013);
 prius.moveCar(); //increments prius' move property by 10. Returns the new move property.
 mustang.moveCar(); //increments mustang' move property by 10. Returns the new move property.
 
-//Hint, you'll need to write a moveCar function which is added to every object that is being returned from the Car function. You'll also need to use the 'this' keyword properly in order to make sure you're invoking moveCar on the right object (prius vs mustang).
+//Hint, you'll need to write a moveCar function which is added to every object that is being
+//returned from the Car function. You'll also need to use the 'this' keyword properly in order
+//to make sure you're invoking moveCar on the right object (prius vs mustang).
 
 
 
@@ -58,10 +68,16 @@ var getYear = function(){
   return this.year;
 };
 
-//Above you're given the getYear function. Using your prius and mustang objects from above, use the proper syntax that will allow for you to call the getYear function with the prius then the mustang objects being the focal objects. *Don't add getYear as a property on both objects*.
+// //Above you're given the getYear function. Using your prius and mustang objects
+// from above, use the proper syntax that will allow for you to call the getYear
+// function with the prius then the mustang objects being the focal objects.
+// *Don't add getYear as a property on both objects*.
 
 //Note(no tests)
-  //Code Here
+
+console.log(getYear.call(prius));
+console.log(getYear.call(mustang));
+
 
 
 //New Problem
@@ -78,11 +94,11 @@ var getMyUsername = function(){
   console.log(this.username);
 };
 
-setTimeout(getMyUsername, 5000);
+setTimeout(getMyUsername.call(myUser), 5000);
 
 //Above you're given an object, a function, and a setTimeout invocation. After 5 seconds, what will the getUsername function return?
 //Note(no tests)
-  //Answer Here
+  //undefined
 
 //In the example above, what is the 'this keyword' bound to when getUsername runs?
 
